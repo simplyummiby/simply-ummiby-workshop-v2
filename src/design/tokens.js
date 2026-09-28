@@ -1,0 +1,1 @@
+export const tokens={radius:{sm:'8px',md:'12px',lg:'18px',pill:'999px'},space:{xs:'4px',sm:'8px',md:'16px',lg:'24px',xl:'32px'}};
