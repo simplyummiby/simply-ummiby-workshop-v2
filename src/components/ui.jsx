@@ -3,3 +3,5 @@ export function Card({className='',...props}){return <section className={`card $
 export function Badge({children,tone='neutral'}){return <span className={`badge badge--${tone}`}>{children}</span>}
 export function PageHeader({eyebrow,title,description,action}){return <header className="page-header"><div><div className="eyebrow">{eyebrow}</div><h1>{title}</h1><p>{description}</p></div>{action}</header>}
 export function Field({label,hint,...props}){return <label className="field"><span>{label}</span><input {...props}/>{hint&&<small>{hint}</small>}</label>}
+export function Select({label,hint,compact=false,children,...props}){const control=<select className={compact?'compact-control':''} {...props}>{children}</select>;return label?<label className="field"><span>{label}</span>{control}{hint&&<small>{hint}</small>}</label>:control}
+export function TextArea({label,hint,...props}){return <label className="field field-wide"><span>{label}</span><textarea rows="3" {...props}/>{hint&&<small>{hint}</small>}</label>}
