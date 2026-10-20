@@ -4,3 +4,6 @@
 
 /* Inventory MVP stock shortcuts */
 .inventory-stock-filters{display:flex;gap:5px;align-items:center;background:#fff;padding:5px;border:1px solid var(--border);border-radius:12px}.inventory-stock-filters button{border:0;background:transparent;border-radius:8px;padding:8px 11px;color:#725c67;font:inherit;font-size:13px;cursor:pointer}.inventory-stock-filters button.active{background:var(--accent-soft);color:var(--accent);font-weight:700}@media(max-width:620px){.inventory-stock-filters{width:100%}.inventory-stock-filters button{flex:1}}
+
+/* Inventory subtype follows the selected material type. */
+.subtype-field{display:flex;flex-direction:column;gap:6px;font-size:13px;font-weight:600;color:var(--muted)}.subtype-field input{width:100%;min-width:0;padding:11px 12px;border:1px solid var(--border);border-radius:10px;background:#fff;color:inherit;font:inherit;font-weight:400}.subtype-field input:disabled{background:#f7f7f7;color:#888}
