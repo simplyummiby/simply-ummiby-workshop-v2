@@ -19,3 +19,5 @@
 
 /* Open inventory details by selecting the row */
 .inventory-table tbody tr.inventory-clickable-row{cursor:pointer}.inventory-table tbody tr.inventory-clickable-row:hover{background:#fff0f6}.inventory-table tbody tr.inventory-clickable-row:focus-visible{outline:2px solid #b95f80;outline-offset:-2px;background:#fff2f7}
+
+.inventory-past-entry{display:flex;justify-content:space-between;gap:15px;align-items:center;border:1px solid #eddde5;background:#fff8fb;border-radius:10px;padding:12px;margin:8px 0;font-size:13px}.inventory-past-entry small{display:block;color:#786b74;font-size:11px;margin-top:4px}.inventory-past-entry span{white-space:nowrap;font-weight:600}@media(max-width:600px){.inventory-past-entry{align-items:flex-start;flex-direction:column}}
