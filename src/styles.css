@@ -32,3 +32,10 @@
 
 /* Keep purchase edit actions on the same history row */
 .inventory-history-entry{display:flex;align-items:center;flex-wrap:nowrap;gap:12px}.inventory-history-entry>div{flex:1 1 auto;min-width:0}.inventory-history-entry .inventory-history-cost{flex:0 0 auto}.inventory-history-entry .inventory-history-edit{flex:0 0 auto;margin-left:4px;align-self:center}@media(max-width:600px){.inventory-history-entry{flex-wrap:nowrap}.inventory-history-cost{width:auto;padding-left:0;white-space:normal;text-align:right}.inventory-history-edit{white-space:nowrap}}
+
+/* Override legacy .history-list > div grid, which moved Edit to the next line. */
+.history-list>div.inventory-history-entry{display:grid;grid-template-columns:90px minmax(0,1fr) auto auto;align-items:center;gap:12px;flex-wrap:initial}
+.history-list>div.inventory-history-entry .inventory-history-cost{grid-column:auto;width:auto;margin:0;white-space:nowrap}
+.history-list>div.inventory-history-entry .inventory-history-edit{grid-column:4;grid-row:1;margin:0;justify-self:end;align-self:center}
+@media(max-width:800px){.history-list>div.inventory-history-entry{grid-template-columns:62px minmax(0,1fr) auto auto;gap:8px}.history-list>div.inventory-history-entry>span:last-child{grid-column:auto}}
+@media(max-width:520px){.history-list>div.inventory-history-entry{grid-template-columns:48px minmax(0,1fr) auto;gap:7px}.history-list>div.inventory-history-entry .inventory-history-cost{grid-column:2;grid-row:2;justify-self:start;white-space:normal}.history-list>div.inventory-history-entry .inventory-history-edit{grid-column:3;grid-row:1}}
