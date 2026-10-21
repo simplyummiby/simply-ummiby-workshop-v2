@@ -108,8 +108,8 @@ function MaterialDetail({item,s,onClose}){const [detailError,setDetailError]=use
 function Inventory(){
  const s=useInventory();
  const [add,setAdd]=useState(false),[selected,setSelected]=useState(null),[q,setQ]=useState(''),[type,setType]=useState(''),[loc,setLoc]=useState(''),[stock,setStock]=useState('all'),[sort,setSort]=useState({field:'name',dir:'asc'}),[stockModal,setStockModal]=useState(null),[amount,setAmount]=useState(''),[date,setDate]=useState(new Date().toLocaleDateString('en-CA')),[cost,setCost]=useState(''),[vendor,setVendor]=useState(''),[reason,setReason]=useState('purchase'),[note,setNote]=useState(''),[saving,setSaving]=useState(false),[error,setError]=useState('');
- const columnChoices=[['name','Item'],['type','Material type'],['subtype','Subtype'],['quantity','Quantity'],['location','Location'],['status','Status'],['brand','Brand'],['color','Color'],['cost','Unit cost'],['value','Inventory value'],['vendor','Vendor'],['reorder','Reorder level'],['updated','Last updated'],['details','View / Edit']];
- const defaultColumns=['name','type','subtype','quantity','location','status','details'];
+ const columnChoices=[['name','Item'],['type','Material type'],['subtype','Subtype'],['quantity','Quantity'],['location','Location'],['status','Status'],['brand','Brand'],['color','Color'],['cost','Unit cost'],['value','Inventory value'],['vendor','Vendor'],['reorder','Reorder level'],['updated','Last updated']];
+ const defaultColumns=['name','type','subtype','quantity','location','status'];
  const [visibleColumns,setVisibleColumns]=useState(()=>{try{const saved=JSON.parse(localStorage.getItem('workshop-inventory-columns-v1'));return Array.isArray(saved)?defaultColumns.filter(x=>saved.includes(x)).concat(saved.filter(x=>columnChoices.some(([k])=>k===x)&&!defaultColumns.includes(x))):defaultColumns}catch{return defaultColumns}});
  const [columnsOpen,setColumnsOpen]=useState(false);
  const columnsMenuRef=useRef(null);
@@ -153,13 +153,13 @@ function Inventory(){
  {error&&<p role="alert" className="inventory-action-error">{error}</p>}
  <div className="inventory-columnbar"><div className="inventory-columns-menu" ref={columnsMenuRef}><button type="button" className="inventory-columns-trigger" onClick={()=>setColumnsOpen(v=>!v)} aria-expanded={columnsOpen}>Columns <span aria-hidden="true">▦</span></button>{columnsOpen&&<div className="inventory-columns-panel"><strong>Show columns</strong>{columnChoices.map(([key,label])=><label key={key}><input type="checkbox" checked={showColumn(key)} disabled={showColumn(key)&&visibleColumns.length===1} onChange={()=>toggleColumn(key)}/>{label}</label>)}<div className="inventory-columns-actions"><button type="button" onClick={()=>setVisibleColumns(defaultColumns)}>Reset defaults</button><button type="button" onClick={()=>setColumnsOpen(false)}>Done</button></div></div>}</div><span>{list.length} supplies</span></div>
  <div className="inventory-table-wrap"><table className="inventory-table"><thead><tr>
- {columnChoices.filter(([key])=>showColumn(key)).map(([key,label])=><th key={key}>{key==='details'?label:header(key,label)}</th>)}
- </tr></thead><tbody>{list.map(x=><tr key={x.id}>
+ {columnChoices.filter(([key])=>showColumn(key)).map(([key,label])=><th key={key}>{header(key,label)}</th>)}
+ </tr></thead><tbody>{list.map(x=><tr key={x.id} className="inventory-clickable-row" onClick={()=>setSelected(x)} onKeyDown={e=>{if(e.target===e.currentTarget&&(e.key==='Enter'||e.key===' ')){e.preventDefault();setSelected(x)}}} tabIndex={0} aria-label={'View or edit '+x.name}>
  {columnChoices.filter(([key])=>showColumn(key)).map(([key])=><td key={key}>
  {key==='name'?<div className="inventory-table-item"><InventoryImage path={x.image_path} alt={x.name} className="inventory-table-thumb"/><div><strong>{x.name}</strong><small>{[x.brand,x.line,x.color].filter(Boolean).join(' · ')}</small></div></div>:
  key==='type'?x.material_types?.name||'—':
  key==='subtype'?x.attributes?.subtype||'—':
- key==='quantity'?<div className="inventory-qty-controls"><button type="button" aria-label={'Use one '+x.name} disabled={Number(x.quantity_on_hand)<1} onClick={()=>quickUse(x)}>−</button><span>{x.quantity_on_hand} <small>{x.units?.abbreviation||''}</small></span><button type="button" aria-label={'Add stock for '+x.name} onClick={()=>openStock(x)}>+</button></div>:
+ key==='quantity'?<div className="inventory-qty-controls"><button type="button" aria-label={'Use one '+x.name} disabled={Number(x.quantity_on_hand)<1} onClick={e=>{e.stopPropagation();quickUse(x)}}>−</button><span>{x.quantity_on_hand} <small>{x.units?.abbreviation||''}</small></span><button type="button" aria-label={'Add stock for '+x.name} onClick={e=>{e.stopPropagation();openStock(x)}}>+</button></div>:
  key==='location'?x.storage_locations?.code||'—':
  key==='status'?<span className={'inventory-stock-pill '+status(x)}>{status(x)==='out'?'Out':status(x)==='low'?'Low':'Good'}</span>:
  key==='brand'?x.brand||'—':
@@ -168,8 +168,7 @@ function Inventory(){
  key==='value'?x.average_unit_cost==null?'—':'$'+(Number(x.average_unit_cost)*Number(x.quantity_on_hand)).toFixed(2):
  key==='vendor'?x.vendors?.name||'—':
  key==='reorder'?x.reorder_level==null?'—':x.reorder_level:
- key==='updated'?x.updated_at?new Date(x.updated_at).toLocaleDateString():'—':
- key==='details'?<button type="button" className="inventory-detail-link" onClick={()=>setSelected(x)}>View / Edit</button>:null}
+ key==='updated'?x.updated_at?new Date(x.updated_at).toLocaleDateString():'—':null}
  </td>)}
  </tr>)}</tbody></table>{!s.loading&&!list.length&&<div className="inventory-empty-state"><Boxes size={28}/><p>{s.items.length?'No matching supplies.':'No materials yet.'}</p><Button onClick={()=>setAdd(true)}>Add material</Button></div>}</div>
  {add&&<AddMaterial s={s} onClose={()=>setAdd(false)}/>}
