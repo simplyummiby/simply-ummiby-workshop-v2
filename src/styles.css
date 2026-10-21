@@ -39,3 +39,6 @@
 .history-list>div.inventory-history-entry .inventory-history-edit{grid-column:4;grid-row:1;margin:0;justify-self:end;align-self:center}
 @media(max-width:800px){.history-list>div.inventory-history-entry{grid-template-columns:62px minmax(0,1fr) auto auto;gap:8px}.history-list>div.inventory-history-entry>span:last-child{grid-column:auto}}
 @media(max-width:520px){.history-list>div.inventory-history-entry{grid-template-columns:48px minmax(0,1fr) auto;gap:7px}.history-list>div.inventory-history-entry .inventory-history-cost{grid-column:2;grid-row:2;justify-self:start;white-space:normal}.history-list>div.inventory-history-entry .inventory-history-edit{grid-column:3;grid-row:1}}
+
+/* Purchase entry by individual units or packages */
+.package-quantity{grid-column:1/-1;display:flex;flex-direction:column;gap:9px;padding:12px;border:1px solid #eadce3;border-radius:11px;background:#fff}.package-quantity>label{font-weight:700;font-size:13px;color:#694757}.package-quantity-switch{display:flex;gap:5px}.package-quantity-switch button{border:1px solid #e5d2dc;border-radius:8px;padding:8px 12px;background:#fff;color:#735464;cursor:pointer}.package-quantity-switch button.active{background:#fbeaf1;color:#953d63;border-color:#dba6bd;font-weight:700}.package-quantity-total{margin:0;padding:10px;border-radius:8px;background:#faf3f6;color:#6d4d5c;font-size:13px}
