@@ -42,3 +42,10 @@
 
 /* Purchase entry by individual units or packages */
 .package-quantity{grid-column:1/-1;display:flex;flex-direction:column;gap:9px;padding:12px;border:1px solid #eadce3;border-radius:11px;background:#fff}.package-quantity>label{font-weight:700;font-size:13px;color:#694757}.package-quantity-switch{display:flex;gap:5px}.package-quantity-switch button{border:1px solid #e5d2dc;border-radius:8px;padding:8px 12px;background:#fff;color:#735464;cursor:pointer}.package-quantity-switch button.active{background:#fbeaf1;color:#953d63;border-color:#dba6bd;font-weight:700}.package-quantity-total{margin:0;padding:10px;border-radius:8px;background:#faf3f6;color:#6d4d5c;font-size:13px}
+
+/* Prepare Dowels: wider responsive modal and readable form fields */
+.dowel-prep-modal{width:min(680px,calc(100vw - 32px));max-width:680px;box-sizing:border-box;overflow-x:hidden}
+.dowel-prep-fields{display:grid;grid-template-columns:minmax(0,1fr) 150px;gap:16px;align-items:end;margin:18px 0}
+.dowel-prep-fields>*{min-width:0;max-width:100%;box-sizing:border-box}
+.dowel-prep-fields select,.dowel-prep-fields input{width:100%;max-width:100%;box-sizing:border-box}
+@media(max-width:600px){.dowel-prep-fields{grid-template-columns:minmax(0,1fr);gap:12px}.dowel-prep-modal{width:calc(100vw - 24px);max-width:100%}}
