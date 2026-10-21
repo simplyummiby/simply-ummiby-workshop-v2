@@ -16,3 +16,6 @@
 
 /* Inventory admin: subtype choices */
 .admin-material-fields{display:flex;flex-direction:column;gap:14px;min-width:0}.subtype-admin-textarea{width:100%;box-sizing:border-box;min-height:118px;border:1px solid #e7d7de;border-radius:10px;padding:12px;color:inherit;background:#fff;font:inherit;resize:vertical}.subtype-admin-textarea:focus{outline:2px solid #cb829e;outline-offset:1px}
+
+/* Open inventory details by selecting the row */
+.inventory-table tbody tr.inventory-clickable-row{cursor:pointer}.inventory-table tbody tr.inventory-clickable-row:hover{background:#fff0f6}.inventory-table tbody tr.inventory-clickable-row:focus-visible{outline:2px solid #b95f80;outline-offset:-2px;background:#fff2f7}
